@@ -8,7 +8,6 @@
     {
         static void Main(string[] args)
         {
-            // Bucle principal del sistema
             while (true)
             {
                 Console.Clear();
@@ -23,7 +22,6 @@
                 switch (choice)
                 {
                     case "1":
-                        // Ejecuta el ejemplo de Metal Gear Solid
                         MetalGearSolidExample.Run();
                         break;
                     case "2":
@@ -39,16 +37,14 @@
 
         // Funciones de membresía para conjuntos difusos
 
-        /// <summary>
-        /// Función de membresía trapezoidal.
-        /// Calcula el grado de pertenencia de un valor 'x' a un conjunto difuso.
-        /// </summary>
-        /// <param name="x">Valor de entrada</param>
-        /// <param name="a">Inicio de la base inferior</param>
-        /// <param name="b">Fin de la base inferior/inicio de la meseta</param>
-        /// <param name="c">Fin de la meseta/inicio de la base superior</param>
-        /// <param name="d">Fin de la base superior</param>
-        /// <returns>Grado de pertenencia [0-1]</returns>
+        // Función de membresía trapezoidal.
+        // Calcula el grado de pertenencia de un valor 'x' a un conjunto difuso.
+        // x = Valor de entrada</param>
+        // a = Inicio de la base inferior</param>
+        // b = Fin de la base inferior/inicio de la meseta
+        // c = Fin de la meseta/inicio de la base superior
+        // d = Fin de la base superior
+        // return = Grado de pertenencia [0-1]
         public static double Trapezoidal(double x, double a, double b, double c, double d)
         {
             if (x <= a) return 0;          // Fuera del rango izquierdo
@@ -58,15 +54,13 @@
             return 0;                       // Fuera del rango derecho
         }
 
-        /// <summary>
-        /// Función de membresía triangular.
-        /// Calcula el grado de pertenencia de un valor 'x' a un conjunto difuso.
-        /// </summary>
-        /// <param name="x">Valor de entrada</param>
-        /// <param name="a">Base izquierda</param>
-        /// <param name="b">Vértice superior</param>
-        /// <param name="c">Base derecha</param>
-        /// <returns>Grado de pertenencia [0-1]</returns>
+        // Función de membresía triangular.
+        // Calcula el grado de pertenencia de un valor 'x' a un conjunto difuso.
+        // x = Valor de entrada</param>
+        // a = Base izquierda</param>
+        // b = Vértice superior</param>
+        // c = Base derecha</param>
+        // return = Grado de pertenencia [0-1]
         public static double Triangular(double x, double a, double b, double c)
         {
             if (x <= a) return 0;          // Fuera del rango izquierdo
@@ -76,10 +70,8 @@
         }
     }
 
-    /// <summary>
     /// Ejemplo práctico: Sistema de detección de ruido en Metal Gear Solid
     /// que determina la rapidez de respuesta de los guardias.
-    /// </summary>
     public class MetalGearSolidExample
     {
         // Variable difusa para el ruido (entrada)
@@ -114,9 +106,7 @@
             rules.Add(new FuzzyRule("Ruidoso", "Ruidoso"));
         }
 
-        /// <summary>
         /// Ejecuta el ejemplo completo de lógica difusa
-        /// </summary>
         public static void Run()
         {
             Console.WriteLine("\n[METAL GEAR SOLID - Sistema de Rapidez de Guardias]");
@@ -266,9 +256,7 @@
         }
     }
 
-    /// <summary>
-    /// Representa una variable difusa con sus funciones de membresía
-    /// </summary>
+    // Representa una variable difusa con sus funciones de membresía
     public class FuzzyVariable
     {
         public string Name { get; }
@@ -284,20 +272,14 @@
             MembershipFunctions = new Dictionary<string, Func<double, double>>();
         }
 
-        /// <summary>
-        /// Añade una función de membresía a la variable
-        /// </summary>
+        // Añade una función de membresía a la variable
         public void AddMembershipFunction(string label, Func<double, double> function)
         {
             MembershipFunctions[label] = function;
         }
 
-        /// <summary>
-        /// Realiza la fuzzificación de un valor nítido
-        /// </summary>
-        /// <returns>
-        /// Diccionario con los grados de pertenencia para cada término lingüístico
-        /// </returns>
+        // Realiza la fuzzificación de un valor nítido
+        // return = Diccionario con los grados de pertenencia para cada término lingüístico
         public Dictionary<string, double> Fuzzify(double value)
         {
             // Usamos LINQ para transformar el diccionario:
@@ -309,9 +291,8 @@
         }
     }
 
-    /// <summary>
-    /// Representa una regla difusa simple (SI-ENTONCES)
-    /// </summary>
+
+    // Representa una regla difusa simple (SI-ENTONCES)
     public class FuzzyRule
     {
         public string InputLabel { get; }  // Término lingüístico de entrada
@@ -324,19 +305,15 @@
         }
     }
 
-    /// <summary>
-    /// Motor de inferencia difusa
-    /// </summary>
+    // Motor de inferencia difusa
     public static class FuzzyInference
     {
-        /// <summary>
-        /// Evalúa el sistema difuso completo
-        /// </summary>
-        /// <param name="inputVar">Variable de entrada</param>
-        /// <param name="outputSingletons">Valores singleton de salida</param>
-        /// <param name="rules">Reglas difusas</param>
-        /// <param name="inputValue">Valor de entrada nítido</param>
-        /// <returns>Valor de salida defusificado</returns>
+        // Evalúa el sistema difuso completo
+        // name = inputVar = Variable de entrada
+        // name = outputSingletons = Valores singleton de salida
+        // name = rules = Reglas difusas
+        // name = inputValue = Valor de entrada nítido
+        // return = Valor de salida defusificado
         public static double Evaluate(
             FuzzyVariable inputVar,
             Dictionary<string, double> outputSingletons,
@@ -391,14 +368,10 @@
         }
     }
 
-    /// <summary>
     /// Utilidad para visualización de grados de pertenencia
-    /// </summary>
     public static class MembershipFunctionPlotter
     {
-        /// <summary>
         /// Muestra un gráfico de barras en consola de los grados de pertenencia
-        /// </summary>
         public static void PlotBars(Dictionary<string, double> membershipValues)
         {
             const int maxBarWidth = 50; // Ancho máximo de la barra (100%)
